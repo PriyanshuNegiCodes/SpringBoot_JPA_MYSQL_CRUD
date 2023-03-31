@@ -21,7 +21,7 @@ public class TrackServiceImp implements ITrackService {
     }
 
     @Override
-    public List<Track> getAllById() {
+    public List<Track> getAllTracks() {
         return repository.findAll();
     }
 
@@ -53,8 +53,8 @@ public class TrackServiceImp implements ITrackService {
     }
 
     @Override
-    public List<Track> getTrackByName( String name) {
-        return  repository.findByName(name);
+    public List<Track> getTrackByName( String trackName) {
+        return  repository.findByTrackName(trackName);
     }
 
     @Override

@@ -1,7 +1,7 @@
 package com.example.C13Sprint1MC1.Controller;
 
 import com.example.C13Sprint1MC1.Domain.Track;
-import com.example.C13Sprint1MC1.Services.TrackServiceImp;
+import com.example.C13Sprint1MC1.Services.ITrackService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,36 +10,45 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("api/v1")
 public class TrackController {
-    TrackServiceImp trackservice;
+    ITrackService iTrackService;
 
     @Autowired
-    public TrackController(TrackServiceImp trackservice) {
-        this.trackservice = trackservice;
-    }
-    @PostMapping("/saveTrack")
-    public ResponseEntity<?> saveTrack(@RequestBody Track track){
-        return new ResponseEntity<>(trackservice.saveTrack(track), HttpStatus.CREATED);
-    }
-    @GetMapping("/getTrack")
-    public ResponseEntity<?> getTrack(){
-        return new ResponseEntity<>(trackservice.getAllById(), HttpStatus.OK);
+    public TrackController(ITrackService iTrackService) {
+        this.iTrackService = iTrackService;
     }
 
+    //http://localhost:65500/api/v1/saveTrack
+    @PostMapping("/saveTrack")
+    public ResponseEntity<?> saveTrack(@RequestBody Track track){
+        return new ResponseEntity<>(iTrackService.saveTrack(track), HttpStatus.CREATED);
+    }
+    //http://localhost:65500/api/v1/getTrack
+    @GetMapping("/getTrack")
+    public ResponseEntity<?> getTrack(){
+        return new ResponseEntity<>(iTrackService.getAllTracks(), HttpStatus.OK);
+    }
+
+    //http://localhost:65500/api/v1/delete/105
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteById(@PathVariable int id){
-        return new ResponseEntity<>(trackservice.deleteTrack(id), HttpStatus.OK);
+        return new ResponseEntity<>(iTrackService.deleteTrack(id), HttpStatus.OK);
     }
+    //http://localhost:65500/api/v1/update/104
     @PutMapping("/update/{id}")
-    public ResponseEntity<?> update(@RequestBody Track track, int id){
-        return new ResponseEntity<>(trackservice.updateTrack(track, id),HttpStatus.OK);
+    public ResponseEntity<?> update(@RequestBody Track track,@PathVariable int id){
+        return new ResponseEntity<>(iTrackService.updateTrack(track, id),HttpStatus.OK);
     }
+
+   // http://localhost:65500/api/v1/gettrack/103
     @GetMapping("/gettrack/{id}")
-    public ResponseEntity<?> getTrackById(@PathVariable int id){
-        return new ResponseEntity<>(trackservice.getTrackById(id), HttpStatus.OK);
+    public ResponseEntity<?> getTrackById( @PathVariable int id){
+        return new ResponseEntity<>(iTrackService.getTrackById(id), HttpStatus.OK);
     }
+
+    //http://localhost:65500/api/v1/getTrack/song
     @GetMapping ("/getTrack/{name}")
-    public ResponseEntity<?> getTrackByName(@PathVariable String name){
-        return new ResponseEntity<>(trackservice.getTrackByName(name), HttpStatus.OK);
+    public ResponseEntity<?> getTrackByName(@PathVariable  String name){
+        return new ResponseEntity<>(iTrackService.getTrackByName(name), HttpStatus.OK);
     }
 
 

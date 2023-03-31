@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ITrackService {
     Track saveTrack(Track track);
-    List<Track> getAllById();
+    List<Track> getAllTracks();
     boolean deleteTrack(int id);
     Track updateTrack(Track track, int id);
     List<Track> getTrackByName(String name);

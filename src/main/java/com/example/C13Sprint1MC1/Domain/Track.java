@@ -9,16 +9,16 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Data
 @ToString
 public class Track {
 
     @Id
-    private int TrackId;
-    private String TrackName;
-    private String TrackComments;
-    private String TrackRating;
-    private String TrackArtist;
+    private int trackId;
+    private String trackName;
+    private String trackComments;
+    private String trackRating;
+    private String trackArtist;
 }
