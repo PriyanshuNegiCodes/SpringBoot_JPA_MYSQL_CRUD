@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface ITrackRepository extends JpaRepository<Track, Integer> {
-    List<Track> findByName(String Name);
+    List<Track> findByName(String name);
 }
