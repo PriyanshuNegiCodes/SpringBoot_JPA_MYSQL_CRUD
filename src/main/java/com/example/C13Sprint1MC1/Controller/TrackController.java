@@ -50,6 +50,4 @@ public class TrackController {
     public ResponseEntity<?> getTrackByName(@PathVariable  String name){
         return new ResponseEntity<>(iTrackService.getTrackByName(name), HttpStatus.OK);
     }
-
-
-}
+    }
